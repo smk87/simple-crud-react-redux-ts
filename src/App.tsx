@@ -1,24 +1,36 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import "./App.css";
+// import { ReduxStoreState } from "./store";
+import { addUser } from "./store/user/actions";
+
 import Input from "./Input";
 
-export type InputHandlerParam = React.ChangeEvent<HTMLInputElement>;
-
-interface AppProps {}
+interface AppProps {
+  addUser: typeof addUser;
+}
 
 interface AppState {
   [key: string]: string;
 }
 
-export class App extends Component<AppProps, AppState> {
+export type InputHandlerParam = React.ChangeEvent<HTMLInputElement>;
+export type ClickHandlerParam = React.MouseEvent;
+
+class App extends Component<AppProps, AppState> {
   state = {
     name: "",
     age: ""
   };
 
   handleInput = (hEvent: InputHandlerParam): void => {
-    this.setState({ [hEvent.target.name]: hEvent.target.value }, () => {
-      console.log(this.state);
+    this.setState({ [hEvent.target.name]: hEvent.target.value });
+  };
+
+  handleAdd = (hEvent: ClickHandlerParam): void => {
+    this.props.addUser({
+      name: this.state.name,
+      age: this.state.age
     });
   };
 
@@ -30,9 +42,10 @@ export class App extends Component<AppProps, AppState> {
         <br />
         <Input type="text" label="name" inputHandler={this.handleInput} />
         <Input type="number" label="age" inputHandler={this.handleInput} />
+        <button onClick={this.handleAdd}>Add</button>
       </div>
     );
   }
 }
 
-export default App;
+export default connect(null, { addUser })(App);
