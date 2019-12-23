@@ -1,23 +1,30 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { ThunkDispatch } from "redux-thunk";
+import { bindActionCreators } from "redux";
+import { startAddUser } from "./store/user/actions";
+import { UserActionsTypes, User } from "./store/user/types";
+
 import "./App.css";
-// import { ReduxStoreState } from "./store";
-import { addUser } from "./store/user/actions";
 
 import Input from "./Input";
 
-interface AppProps {
-  addUser: typeof addUser;
-}
+interface AppProps {}
 
 interface AppState {
   [key: string]: string;
 }
 
+interface LinkDispatchProps {
+  startAddUser: (user: User) => void;
+}
+
 export type InputHandlerParam = React.ChangeEvent<HTMLInputElement>;
 export type ClickHandlerParam = React.MouseEvent;
 
-class App extends Component<AppProps, AppState> {
+type Props = AppProps & LinkDispatchProps;
+
+class App extends Component<Props, AppState> {
   state = {
     name: "",
     age: ""
@@ -28,7 +35,7 @@ class App extends Component<AppProps, AppState> {
   };
 
   handleAdd = (hEvent: ClickHandlerParam): void => {
-    this.props.addUser({
+    this.props.startAddUser({
       name: this.state.name,
       age: this.state.age
     });
@@ -48,4 +55,11 @@ class App extends Component<AppProps, AppState> {
   }
 }
 
-export default connect(null, { addUser })(App);
+const mapDispatchToProps = (
+  dispatch: ThunkDispatch<any, any, UserActionsTypes>,
+  ownProps: AppProps
+): LinkDispatchProps => ({
+  startAddUser: bindActionCreators(startAddUser, dispatch)
+});
+
+export default connect(null, mapDispatchToProps)(App);
