@@ -5,6 +5,7 @@ export interface User {
   name: string;
   age: string;
 }
+
 // Define Different action type
 interface AddUserAction {
   type: typeof ADD_USER;
