@@ -4,7 +4,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import { userReducer } from "./user/reducer";
 
 const rootReducer = combineReducers({
-  userReducer
+  user: userReducer
 });
 
 export type ReduxStoreState = ReturnType<typeof rootReducer>;

@@ -1,11 +1,5 @@
 import React from "react";
-import { InputHandlerParam } from "./App";
-
-interface InputProps {
-  type: string;
-  label: string;
-  inputHandler: (hEvent: InputHandlerParam) => void;
-}
+import { InputProps } from "./interfaces";
 
 const Input: React.FC<InputProps> = ({ type, label, inputHandler }) => {
   return (
