@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { ThunkDispatch } from "redux-thunk";
 import { bindActionCreators } from "redux";
-import { startAddUser } from "../../store/user/actions";
-import { UserActionsTypes } from "../../store/user/types";
+import { startAddUser, startDeleteUser } from "../../store/user/actions";
+import { UserActionsTypes, User } from "../../store/user/types";
 import { InputHandlerParam, ClickHandlerParam } from "../../types";
 import {
   AppProps,
@@ -22,7 +22,8 @@ type Props = AppProps & LinkDispatchProps & LinkStateProps;
 class App extends Component<Props, AppState> {
   state = {
     name: "",
-    age: ""
+    age: "",
+    id: ""
   };
 
   handleInput = (hEvent: InputHandlerParam): void => {
@@ -30,10 +31,22 @@ class App extends Component<Props, AppState> {
   };
 
   handleAdd = (hEvent: ClickHandlerParam): void => {
-    this.props.startAddUser({
-      name: this.state.name,
-      age: this.state.age
-    });
+    this.setState(
+      {
+        id: this.state.name + this.state.age
+      },
+      () => {
+        this.props.startAddUser({
+          id: this.state.id,
+          name: this.state.name,
+          age: this.state.age
+        });
+      }
+    );
+  };
+
+  handleDelete = (hEvent: ClickHandlerParam, user: User): void => {
+    this.props.startDeleteUser(user);
   };
 
   render() {
@@ -47,7 +60,7 @@ class App extends Component<Props, AppState> {
         <button onClick={this.handleAdd}>Add</button>
         <br />
         <br />
-        <UserList users={this.props.users} />
+        <UserList users={this.props.users} deleteHandler={this.handleDelete} />
       </div>
     );
   }
@@ -66,7 +79,8 @@ const mapDispatchToProps = (
   dispatch: ThunkDispatch<any, any, UserActionsTypes>,
   ownProps: AppProps
 ): LinkDispatchProps => ({
-  startAddUser: bindActionCreators(startAddUser, dispatch)
+  startAddUser: bindActionCreators(startAddUser, dispatch),
+  startDeleteUser: bindActionCreators(startDeleteUser, dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

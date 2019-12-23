@@ -5,6 +5,7 @@ export interface AppProps {}
 
 export interface LinkDispatchProps {
   startAddUser: (user: User) => void;
+  startDeleteUser: (user: User) => void;
 }
 
 export interface LinkStateProps {
