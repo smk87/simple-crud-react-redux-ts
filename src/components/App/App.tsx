@@ -53,6 +53,7 @@ class App extends Component<Props, AppState> {
   }
 }
 
+// Define reducer state prop types
 const mapStateToProps = (
   state: ReduxStoreState,
   ownProps: AppProps
@@ -60,6 +61,7 @@ const mapStateToProps = (
   users: state.user.users
 });
 
+// Define dispatcher prop types
 const mapDispatchToProps = (
   dispatch: ThunkDispatch<any, any, UserActionsTypes>,
   ownProps: AppProps

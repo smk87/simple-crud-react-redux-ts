@@ -1,15 +1,17 @@
+export const ADD_USER = "ADD_USER";
+
+// Define user type
 export interface User {
   name: string;
   age: string;
 }
-
-export const ADD_USER = "ADD_USER";
-
+// Define Different action type
 interface AddUserAction {
   type: typeof ADD_USER;
   payload: User;
 }
 
+// Define reducer state of this module
 export interface UserState {
   users: User[];
 }

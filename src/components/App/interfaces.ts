@@ -1,10 +1,7 @@
 import { User } from "../../store/user/types";
 
+// Define prop types for this component
 export interface AppProps {}
-
-export interface AppState {
-  [key: string]: string;
-}
 
 export interface LinkDispatchProps {
   startAddUser: (user: User) => void;
@@ -12,4 +9,9 @@ export interface LinkDispatchProps {
 
 export interface LinkStateProps {
   users: User[];
+}
+
+// Define state property types for this component
+export interface AppState {
+  [key: string]: string;
 }

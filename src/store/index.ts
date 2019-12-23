@@ -7,6 +7,7 @@ const rootReducer = combineReducers({
   user: userReducer
 });
 
+// Store rootReducer type
 export type ReduxStoreState = ReturnType<typeof rootReducer>;
 
 export default function configureStore() {
