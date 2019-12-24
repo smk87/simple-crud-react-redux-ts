@@ -55,12 +55,24 @@ class App extends Component<Props, AppState> {
         <h1>Simple CRUD App with React-Redux-TS</h1>
         <br />
         <br />
+        <h4 className="info">Enter User Info</h4>
         <Input type="text" label="name" inputHandler={this.handleInput} />
         <Input type="number" label="age" inputHandler={this.handleInput} />
         <button onClick={this.handleAdd}>Add</button>
         <br />
         <br />
         <UserList users={this.props.users} deleteHandler={this.handleDelete} />
+        <style jsx>{`
+          .App {
+            h1 {
+              color: blue;
+            }
+
+            .info {
+              color: red;
+            }
+          }
+        `}</style>
       </div>
     );
   }
