@@ -15,6 +15,7 @@ import Input from "../Input/Input";
 import UserList from "../UserList/UserList";
 import { ReduxStoreState } from "../../store";
 import "../../App.css";
+import styles from "./style";
 
 // Combine All types of props
 type Props = AppProps & LinkDispatchProps & LinkStateProps;
@@ -62,17 +63,8 @@ class App extends Component<Props, AppState> {
         <br />
         <br />
         <UserList users={this.props.users} deleteHandler={this.handleDelete} />
-        <style jsx>{`
-          .App {
-            h1 {
-              color: blue;
-            }
 
-            .info {
-              color: red;
-            }
-          }
-        `}</style>
+        <style jsx>{styles}</style>
       </div>
     );
   }

@@ -1,11 +1,14 @@
 import React from "react";
 import { InputProps } from "./interfaces";
+import styles from "./style";
 
 const Input: React.FC<InputProps> = ({ type, label, inputHandler }) => {
   return (
-    <div>
+    <div className="input-base">
       <p>{label}</p>
       <input type={type} name={label} onChange={inputHandler} />
+
+      <style jsx>{styles}</style>
     </div>
   );
 };
