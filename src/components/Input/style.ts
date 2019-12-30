@@ -2,11 +2,11 @@ import css from "styled-jsx/css";
 
 export default css`
   .input-base {
-    color: green;
+    color: darkgreen;
 
     input {
       margin-bottom: 1rem;
-      color: red;
+      color: darkred;
     }
   }
 `;

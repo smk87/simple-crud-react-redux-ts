@@ -3,11 +3,11 @@ import css from "styled-jsx/css";
 export default css`
   .App {
     h1 {
-      color: blue;
+      color: darkblue;
     }
 
     .info {
-      color: red;
+      color: darkred;
     }
   }
 `;
