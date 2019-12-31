@@ -15,7 +15,7 @@ import Input from "../Input/Input";
 import UserList from "../UserList/UserList";
 import { ReduxStoreState } from "../../store";
 import "../../App.css";
-import styles from "./style";
+import styles from "./styles";
 
 // Combine All types of props
 type Props = AppProps & LinkDispatchProps & LinkStateProps;

@@ -1,6 +1,6 @@
 import React from "react";
 import { InputProps } from "./interfaces";
-import styles from "./style";
+import styles from "./styles";
 
 const Input: React.FC<InputProps> = ({ type, label, inputHandler }) => {
   return (
