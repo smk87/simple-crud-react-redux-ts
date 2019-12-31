@@ -2,9 +2,11 @@ import {
   START_ADD_USER,
   SUCCESS_ADD_USER,
   FAIL_ADD_USER,
+  START_DELETE_USER,
+  SUCCESS_DELETE_USER,
+  FAIL_DELETE_USER,
   UserState,
-  UserActionsTypes,
-  DELETE_USER
+  UserActionsTypes
 } from "./types";
 
 const initialState: UserState = {
@@ -27,12 +29,18 @@ export function userReducer(
     case FAIL_ADD_USER:
       return { ...state, loading: false, error: true };
 
-    case DELETE_USER:
+    case START_DELETE_USER:
+      return { ...state, loading: true };
+
+    case SUCCESS_DELETE_USER:
       let newState = [...state.users];
 
       newState = newState.filter(user => user.id !== action.payload.id);
 
       return { ...state, users: [...newState] };
+
+    case FAIL_DELETE_USER:
+      return { ...state, loading: false, error: true };
 
     default:
       return { ...state };

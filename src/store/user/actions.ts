@@ -3,6 +3,9 @@ import {
   START_ADD_USER,
   SUCCESS_ADD_USER,
   FAIL_ADD_USER,
+  START_DELETE_USER,
+  SUCCESS_DELETE_USER,
+  FAIL_DELETE_USER,
   UserActionsTypes,
   DELETE_USER,
   ADD_USER
@@ -15,13 +18,15 @@ import axios from "axios";
 export const addUser = (user: User): UserActionsTypes => ({
   type: ADD_USER,
   payload: user,
-  types: [START_ADD_USER, SUCCESS_ADD_USER, FAIL_ADD_USER],
+  subtypes: [START_ADD_USER, SUCCESS_ADD_USER, FAIL_ADD_USER],
   promise: axios.get("https://jsonplaceholder.typicode.com/posts/1")
 });
 
 export const deleteUser = (user: User): UserActionsTypes => ({
   type: DELETE_USER,
-  payload: user
+  payload: user,
+  subtypes: [START_DELETE_USER, SUCCESS_DELETE_USER, FAIL_DELETE_USER],
+  promise: axios.get("https://jsonplaceholder.typicode.com/posts/1")
 });
 
 // Action Dispatchers
