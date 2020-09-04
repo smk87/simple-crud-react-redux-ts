@@ -48,7 +48,7 @@
     ]
   },
   "devDependencies": {
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.13.1",
     "styled-jsx-plugin-sass": "^1.0.0"
   }
 }
